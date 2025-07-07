@@ -1,10 +1,9 @@
-
 import sqlite3
 import pandas as pd
-import numpy as np                                          #to convert np.float64 to float etc etc
+import numpy as np  # to convert np.float64 to float etc etc
 
 
-                                                    # THIS IS AONE TIMEFUNCTION
+# THIS IS AONE TIMEFUNCTION
 def stock_table_initial():
     initial_stock_df = pd.DataFrame({"id": range(1, 8),
                                      'item_name': ['Apple', 'Banana', 'Dairymilk', 'Kitkat', 'Oreo', 'Almond',
@@ -15,7 +14,6 @@ def stock_table_initial():
                                      'qty_original': [100, 70, 50, 50, 200, 100, 80]})
 
     # # print(initial_stock_df)
-
 
     food_stock = sqlite3.connect("foodstock.db")
     food_stock.executescript('''
@@ -31,7 +29,7 @@ def stock_table_initial():
     ''')
     # food_stock.close()
 
-                                                            # # #now put it into initial_stock table
+    # # #now put it into initial_stock table
 
     query = "INSERT INTO stock(id,item_name,category,unit_price,qty_original) VALUES (?,?,?,?,?)"
     for i in range(7):
@@ -51,14 +49,14 @@ def stock_table_initial():
 
 def customers_table_initial():
     make_sales = sqlite3.connect("foodstock.db")
-    c= make_sales.cursor()
+    c = make_sales.cursor()
 
     c.executescript(''' -- drop table if exists customers;
     CREATE TABLE  customers(
     cid INTEGER PRIMARY KEY AUTOINCREMENT,
     cname TEXT,
     order_date DATE
-    
+
     );
     ''')
 
@@ -66,30 +64,32 @@ def customers_table_initial():
 
 
 def orders_table_initial():
-        make_orders = sqlite3.connect("foodstock.db")
-        c = make_orders.cursor()
+    make_orders = sqlite3.connect("foodstock.db")
+    c = make_orders.cursor()
 
-        c.executescript('''
+    c.executescript('''
         -- drop table  if exists orders;
         CREATE TABLE orders (
         oid INTEGER ,     
         cid INTEGER ,
-        
+
         item_name TEXT,
         units_ordered INT,
         order_date DATE,
         PRIMARY KEY (oid),
         FOREIGN KEY (cid,order_date) REFERENCES customers(cid,order_date)
-                   
+
         );
         ''')
-        make_orders.close()
+    make_orders.close()
 
-def main ():
 
-    # stock_table_initial()
-    # customers_table_initial()
-    # orders_table_initial()##
+def main():
+
+
+# stock_table_initial()
+# customers_table_initial()
+# orders_table_initial()##
 
 
 if __name__ == '__main__':
