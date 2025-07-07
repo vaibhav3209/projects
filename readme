@@ -1,0 +1,34 @@
+READ THIS BEFORE:
+1.)there are 3 files
+        -->>intial_stock_code   for resetting or forming tables at start of month,add new item,change unit price etc
+        -->>main                which is the shopping code for xustomer
+        -->>manager_code        for manager end to check stock or reset
+
+2.) three tables  (see respective columns)
+        -->>customers(P.K. == cid)
+        -->>orders(P.K. ==oid  )   ,,, FOREIGN KEY (cid,order_date) REFERENCES customers(cid,order_date)
+        -->>stock(P.K. == item_name)
+
+3.)  main.py is a function heavy file (and might be confusing)
+
+4.)LIBRARIES USED:
+        -->>tabulate
+        -->>pandas              just for initial stock dataframe(idk why)
+        -->>sqlite3             all the work in one database only
+        -->>numpy               just once to convert np.float type of data to float to work in conn.execute()
+
+5.)   this project took me overall  15HRS with appx 30-40% help of CHATGPT
+
+6.) also CUSTOMER.PY  is the bruteforce way of when i thought of this project.It uses series and dataframes
+in pandas library....
+if you dont use it programs will run fine.
+.................................................
+
+FUTUTRE CAN DO'S::
+A.)low stock print in red ,,, have stock print in green
+B.)Can change units of fruits to kgs and respective units for others likewise
+c.)add new items by changing initial_stock_code file
+d.)apply data analysis tecchniques and write changes in MANAGER_CODE file
+.................................................
+
+##
